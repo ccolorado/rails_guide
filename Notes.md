@@ -24,3 +24,88 @@
  ./tmp           Temporary files like cache, pid and session files.
 
  ./vendor        A place for all third-party code. In a typical Rails application this includes vendored gems
+
+# 4 Hello Rails
+
+## 4.1 Starting up teh server
+
+  $ rails server
+
+
+## 4.2 Say hellow to rails
+
+Minimum requirements:
+* Controller
+* View
+
+A _controller_ purpose is to handle the requests.
+Routing decides what controller recieves each request
+
+A _view_ should just display information, and they are written the eRuby languaje (Embedded Ruby)
+
+
+Creating a controller with a controller generator:
+Syntax: rails generate controller NAME [action action] [options]
+
+  $ rails generate controller welcome index
+
+Rails then will create several files
+
+      create  app/controllers/welcome_controller.rb
+       route  get "welcome/index"
+      invoke  erb
+      create    app/views/welcome
+      create    app/views/welcome/index.html.erb
+      invoke  test_unit
+      create    test/controllers/welcome_controller_test.rb
+      invoke  helper
+      create    app/helpers/welcome_helper.rb
+      invoke    test_unit
+      create      test/helpers/welcome_helper_test.rb
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/welcome.js.coffee
+      invoke    scss
+      create      app/assets/stylesheets/welcome.css.scss
+
+Files
+
+* app/controllers/welcome_controller.rb           These files include the controller iteself 
+* app/views/welcome/index.html.erb                The controler view directory as well as the view.
+* test/controllers/welcome_controller_test.rb     Unit testing files and directories
+* app/helpers/welcome_helper.rb                   Helpers ?
+* app/assets/javascripts/welcome.js.coffee        Javascript/Coffescript assets
+* app/assets/stylesheets/welcome.css.scss         CSS assets
+
+Settings
+
+route  get "welcome/index"
+
+## 4.3 Setting the application Home Page
+
+Editing the routes of the application can be perfomed at the routes file:
+config/routes.rb
+
+After creating the welcome controller and editing it's view ( app/views/welcome/index.html.erb ), 
+we can now access its content on http://localhost:3000/welcome/index. But to set it up as a default for 
+http://localhost:3000/ _root_ must be pointed to this particular view
+This faile contains various commented examples. We need to use root's example
+
+```DSL
+  root 'wellcome#index'
+```
+
+# 5 Getting Up and Running
+
+ATM we have created crontroller, an action and a view
+Now we need to learn what a resource is.
+A _Resourece_ is the term used for a collection of similar objects, such as articles, people or animal.
+You cna Create, Read, Update or Destroy items A.K.A CRUD
+
+Rails provides a method called **resources** which can declate a standard REST resource.
+Adding the 'article' resource should look like this:
+
+```diff
+  config/routes
+  + resoureces :articles
+```
