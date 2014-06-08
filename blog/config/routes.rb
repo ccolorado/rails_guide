@@ -1,6 +1,6 @@
 Blog::Application.routes.draw do
 
-  resoureces :articles
+  resources :articles
 
   # No longer necesary, as welcome will only be accessed as http://localhost:3000/
   #get "welcome/index"
