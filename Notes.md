@@ -125,3 +125,24 @@ edit_article GET    /articles/:id/edit(.:format) articles#edit
              PUT    /articles/:id(.:format)      articles#update
              DELETE /articles/:id(.:format)      articles#destroy
         root GET    /                            welcome#index
+
+## 5.2 Laying down the ground work
+Restful design would suggest subject/verb syntax of our resources.
+Some work towards that has already been layout 
+Going to: 
+http://localhost:3000/articles/new
+
+Will yield the error:
+_Routing Error, uninitialized constant ArticlesController_
+
+This should be expected as the routes have not been assigned to controller.
+We will need to create a controller that will correspond with our articles resource.To
+generate the necessary controller ( ArticleController ). The following command must be
+issued.
+
+  $ rails g controller articles
+
+Notice the use of g instead of generate and articles being referred in plural just as the
+resource definition on the config/routes.rb file.
+
+**Made a typo ? rails destroy controller <typo> will take care of that**
