@@ -94,18 +94,3 @@ This faile contains various commented examples. We need to use root's example
 ```DSL
   root 'wellcome#index'
 ```
-
-# 5 Getting Up and Running
-
-ATM we have created crontroller, an action and a view
-Now we need to learn what a resource is.
-A _Resourece_ is the term used for a collection of similar objects, such as articles, people or animal.
-You cna Create, Read, Update or Destroy items A.K.A CRUD
-
-Rails provides a method called **resources** which can declate a standard REST resource.
-Adding the 'article' resource should look like this:
-
-```diff
-  config/routes
-  + resoureces :articles
-```
