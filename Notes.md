@@ -10,16 +10,16 @@
 /blog/
  ./Gemfile       These files allow you to specify what gem dependencies are needed for your Rails application. These files are used by the Bundler gem 
  ./Gemfile.lock
- ./README.rdoc   This is a bref instruction manual for your application. You should edit this file to tell others what your application does, how to set it up, and so on.
+ ./README.rdoc   This is a brief instruction manual for your application. You should edit this file to tell others what your application does, how to set it up, and so on.
  ./Rakefile      This file locates and loads tasks that can be run from the command line. The task definitions are defined throughout the components of rails. Rather than changin RAke, you should add your own tasks by adding files to the lib/tasks directory of your application.
  ./app           Contains the controllers, models, views, helpers, mailers and assets for your application
- ./bin           Contains the rails scripts that start your app and can contain other scripts you use to deploy or run your application
+ ./bin           Contains the rails scripts that start your application and can contain other scripts you use to deploy or run your application
  ./config        Configure your applications routes, database, and more.
  ./config.ru     Rack configuration for Rack based servers used to start the application
  ./db            Contains your current database schema, as well as the database migrations
  ./lib           Extend modules for your application
  ./log           Application log files.
- ./public        The only folder seen by the world as-is. Contains static files and compliled assets
+ ./public        The only folder seen by the world as-is. Contains static files and compiled assets
  ./test          Unite test, fixtures, and other tests apparatus.
  ./tmp           Temporary files like cache, pid and session files.
 
@@ -27,21 +27,21 @@
 
 # 4 Hello Rails
 
-## 4.1 Starting up teh server
+## 4.1 Starting up the server
 
   $ rails server
 
 
-## 4.2 Say hellow to rails
+## 4.2 Say hello to rails
 
 Minimum requirements:
 * Controller
 * View
 
 A _controller_ purpose is to handle the requests.
-Routing decides what controller recieves each request
+Routing decides what controller receives each request
 
-A _view_ should just display information, and they are written the eRuby languaje (Embedded Ruby)
+A _view_ should just display information, and they are written the eRuby language (Embedded Ruby)
 
 
 Creating a controller with a controller generator:
@@ -70,8 +70,8 @@ Rails then will create several files
 
 Files
 
-* app/controllers/welcome_controller.rb           These files include the controller iteself 
-* app/views/welcome/index.html.erb                The controler view directory as well as the view.
+* app/controllers/welcome_controller.rb           These files include the controller itself 
+* app/views/welcome/index.html.erb                The controller view directory as well as the view.
 * test/controllers/welcome_controller_test.rb     Unit testing files and directories
 * app/helpers/welcome_helper.rb                   Helpers ?
 * app/assets/javascripts/welcome.js.coffee        Javascript/Coffescript assets
@@ -83,13 +83,13 @@ route  get "welcome/index"
 
 ## 4.3 Setting the application Home Page
 
-Editing the routes of the application can be perfomed at the routes file:
+Editing the routes of the application can be performed at the routes file:
 config/routes.rb
 
 After creating the welcome controller and editing it's view ( app/views/welcome/index.html.erb ), 
 we can now access its content on http://localhost:3000/welcome/index. But to set it up as a default for 
 http://localhost:3000/ _root_ must be pointed to this particular view
-This faile contains various commented examples. We need to use root's example
+This file contains various commented examples. We need to use root's example
 
 ```DSL
   root 'wellcome#index'
@@ -97,12 +97,12 @@ This faile contains various commented examples. We need to use root's example
 
 # 5 Getting Up and Running
 
-ATM we have created crontroller, an action and a view
+ATM we have created controller, an action and a view
 Now we need to learn what a resource is.
 A _Resourece_ is the term used for a collection of similar objects, such as articles, people or animal.
-You cna Create, Read, Update or Destroy items A.K.A CRUD
+You can Create, Read, Update or Destroy items A.K.A CRUD
 
-Rails provides a method called **resources** which can declate a standard REST resource.
+Rails provides a method called **resources** which can delete a standard REST resource.
 Adding the 'article' resource should look like this:
 
 ```diff
