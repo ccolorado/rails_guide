@@ -1,5 +1,10 @@
 Blog::Application.routes.draw do
-  get "welcome/index"
+
+  resoureces :articles
+
+  # No longer necesary, as welcome will only be accessed as http://localhost:3000/
+  #get "welcome/index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
