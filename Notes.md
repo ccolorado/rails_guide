@@ -107,5 +107,21 @@ Adding the 'article' resource should look like this:
 
 ```diff
   config/routes
-  + resoureces :articles
+  + resources :articles
 ```
+
+Running rake routes will list all the RESTful actions that are available.
+resources are declared in plural as rake will make meaningfull use of the distinction
+
+  $ rake routes
+
+      Prefix Verb   URI Pattern                  Controller#Action
+    articles GET    /articles(.:format)          articles#index
+             POST   /articles(.:format)          articles#create
+ new_article GET    /articles/new(.:format)      articles#new
+edit_article GET    /articles/:id/edit(.:format) articles#edit
+     article GET    /articles/:id(.:format)      articles#show
+             PATCH  /articles/:id(.:format)      articles#update
+             PUT    /articles/:id(.:format)      articles#update
+             DELETE /articles/:id(.:format)      articles#destroy
+        root GET    /                            welcome#index
