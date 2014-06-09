@@ -1,4 +1,4 @@
-
+Notes from http://guides.rubyonrails.org/getting_started.html
 
 # Crating a new rails project
 
@@ -8,10 +8,10 @@
 ## A rails project Anatomy
 
 /blog/
- ./Gemfile       These files allow you to specify what gem dependencies are needed for your Rails application. These files are used by the Bundler gem 
+ ./Gemfile       These files allow you to specify what gem dependencies are needed for your Rails application. These files are used by the Bundler gem
  ./Gemfile.lock
  ./README.rdoc   This is a brief instruction manual for your application. You should edit this file to tell others what your application does, how to set it up, and so on.
- ./Rakefile      This file locates and loads tasks that can be run from the command line. The task definitions are defined throughout the components of rails. Rather than changin RAke, you should add your own tasks by adding files to the lib/tasks directory of your application.
+ ./Rakefile      This file locates and loads tasks that can be run from the command line. The task definitions are defined throughout the components of rails. Rather than changing Rake, you should add your own tasks by adding files to the lib/tasks directory of your application.
  ./app           Contains the controllers, models, views, helpers, mailers and assets for your application
  ./bin           Contains the rails scripts that start your application and can contain other scripts you use to deploy or run your application
  ./config        Configure your applications routes, database, and more.
@@ -70,7 +70,7 @@ Rails then will create several files
 
 Files
 
-* app/controllers/welcome_controller.rb           These files include the controller itself 
+* app/controllers/welcome_controller.rb           These files include the controller itself
 * app/views/welcome/index.html.erb                The controller view directory as well as the view.
 * test/controllers/welcome_controller_test.rb     Unit testing files and directories
 * app/helpers/welcome_helper.rb                   Helpers ?
@@ -86,8 +86,8 @@ route  get "welcome/index"
 Editing the routes of the application can be performed at the routes file:
 config/routes.rb
 
-After creating the welcome controller and editing it's view ( app/views/welcome/index.html.erb ), 
-we can now access its content on http://localhost:3000/welcome/index. But to set it up as a default for 
+After creating the welcome controller and editing it's view ( app/views/welcome/index.html.erb ),
+we can now access its content on http://localhost:3000/welcome/index. But to set it up as a default for
 http://localhost:3000/ _root_ must be pointed to this particular view
 This file contains various commented examples. We need to use root's example
 
@@ -111,7 +111,7 @@ Adding the 'article' resource should look like this:
 ```
 
 Running rake routes will list all the RESTful actions that are available.
-resources are declared in plural as rake will make meaningfull use of the distinction
+Resources are declared in plural as rake will make meaningful use of the distinction
 
   $ rake routes
 
@@ -128,8 +128,8 @@ edit_article GET    /articles/:id/edit(.:format) articles#edit
 
 ## 5.2 Laying down the ground work
 Restful design would suggest subject/verb syntax of our resources.
-Some work towards that has already been layout 
-Going to: 
+Some work towards that has already been layout
+Going to:
 http://localhost:3000/articles/new
 
 Will yield the error:
@@ -146,3 +146,44 @@ Notice the use of g instead of generate and articles being referred in plural ju
 resource definition on the config/routes.rb file.
 
 **Made a typo ? rails destroy controller <typo> will take care of that**
+
+The controller ArticlesController blog/app/controllers/articles_controller.rb is where we
+define the actions of this controller.
+
+To define a new action we just need to add a method that corresponds to such action inside
+the ArticlesController class
+
+```ruby
+def new
+
+end
+```
+
+Rails expect controllers to have associated views, so running
+http://localhost:3000/articles/new will yield an error about missing templates (AKA views)
+The following is a representation of the message formated for easy reading as well as
+notes on about descriptions.
+
+  Missing template articles/new, application/new with {
+    :locale=>[:en],       #Default spoken languaje
+    :formats=>[:html],    #Format of the template to be served in response
+
+
+    :handlers=>[          #Tells what template handlers coulde be used to render a
+                          #template
+      :erb,               # erb => most commonly used for html templates
+      :builder,           # builder => xml templates
+      :raw,
+      :ruby,
+      :jbuilder,
+      :coffee             # coffe => CoffeeScript to build JavaScript templates
+    ]}.
+
+  Searched in: *          # Where has rails looked for the missing template
+  "/path/to/blog/app/views"
+
+
+Bookmark: "The simplest template that would work in this case would be one located at"
+
+
+
