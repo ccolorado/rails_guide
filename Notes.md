@@ -182,8 +182,11 @@ notes on about descriptions.
   Searched in: *          # Where has rails looked for the missing template
   "/path/to/blog/app/views"
 
+Rails will expect the template to be stored on:
+app/views/articles/new.html.erb
 
-Bookmark: "The simplest template that would work in this case would be one located at"
+On the erb template, form_for :controller helps us to hone down the form for our said
+controller.
 
 
-
+## 5.3 Creating articles
