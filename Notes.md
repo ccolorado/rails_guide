@@ -126,7 +126,7 @@ edit_article GET    /articles/:id/edit(.:format) articles#edit
              DELETE /articles/:id(.:format)      articles#destroy
         root GET    /                            welcome#index
 
-## 5.2 Laying down the ground work
+## 5.1 Laying down the ground work
 Restful design would suggest subject/verb syntax of our resources.
 Some work towards that has already been layout
 Going to:
@@ -182,8 +182,38 @@ notes on about descriptions.
   Searched in: *          # Where has rails looked for the missing template
   "/path/to/blog/app/views"
 
+This simple template will satisfy rails:
 
-Bookmark: "The simplest template that would work in this case would be one located at"
+  echo "<h1>New Article</h1>" > blog/app/views/articles/new.html.erb
 
+The extension html indicate the output format and the erb extension it's handler.
+
+## 5.2 The first form
+
+Form builder is the handler to write form templates. Using templates instead of basic
+html will allow us to link a form to the ORM driver ( or activerecord ?).
+
+The *form_for* method can link a form to a specific object/resource
+
+`` form_builder
+  <%= form_for :article do |f| %>
+    <p>
+        <%= f.label :title %><br>         #Field title label
+        <%= f.text_field :title %><br>    #field title input field
+        ...
+``
+
+However this form has no action and will be redirected to itself.
+
+`` form_builder
+  <%= form_for :article, url: articles_path  do |f| %>
+``
+The URL parameter will define an action for this form 'articles_path' seems a little
+arbitrary so far and most likely its action doesn't even exist right now.
+
+articles_path == /articles
+
+"The articles_path helper tells Rails to point the form to the URI Pattern associated with
+the articles prefix"
 
 
