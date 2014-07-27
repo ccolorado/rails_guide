@@ -233,3 +233,6 @@ The expected result is to see a json syntax on the browser but for some reason I
 getting the Template missing. Despite the tutorial stating this should not happened with
 the render method.
 
+*render*'s plain: option was introduced on rails 4.1, currently using 4.0.1, text is the
+corresponding option.
+
