@@ -102,7 +102,7 @@ Now we need to learn what a resource is.
 A _Resourece_ is the term used for a collection of similar objects, such as articles, people or animal.
 You can Create, Read, Update or Destroy items A.K.A CRUD
 
-Rails provides a method called **resources** which can delete a standard REST resource.
+Rails provides a method called **resources** which can declares a standard REST resource.
 Adding the 'article' resource should look like this:
 
 ```diff
@@ -208,12 +208,28 @@ However this form has no action and will be redirected to itself.
 `` form_builder
   <%= form_for :article, url: articles_path  do |f| %>
 ``
-The URL parameter will define an action for this form 'articles_path' seems a little
-arbitrary so far and most likely its action doesn't even exist right now.
+Usually a value for *url:* would be _{action: "create"}_, Instead in this case the
+*helper* 'articles_path' is used, ( God knows why we are learning shortcuts this early but
+the again generators are shortcuts )
 
-articles_path == /articles
+articles_path actually resolves to  http://0.0.0.0:3000/articles/new
 
 "The articles_path helper tells Rails to point the form to the URI Pattern associated with
 the articles prefix"
 
+## 5.3 Creating articles
+To create the required action simply add the create method definition on
+app/controllers/articles_controller.rb
+
+`` ruby
+  def create
+    render plain: params[:article].instepct
+  end
+``
+
+NOTE: this action is only using the render command, so not storing it anywhere.
+
+The expected result is to see a json syntax on the browser but for some reason I am still
+getting the Template missing. Despite the tutorial stating this should not happened with
+the render method.
 
