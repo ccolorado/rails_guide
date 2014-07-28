@@ -253,7 +253,7 @@ $ ./bin/rails generate model Article title:string text:text
 ## 5.5 Running a Migration
 
 A migration is a class that is intended to represent, create and modify a table.
-This class includes a time stamp, in order to keep track of changes to the table. 
+This class includes a time stamp, in order to keep track of changes to the table.
 this actions are reversible trough rake.
 
 $ bin/rake db:migrate
@@ -262,4 +262,23 @@ $ bin/rake db:migrate
 -- create_table(:articles)
    -> 0.0018s
 ==  CreateArticles: migrated (0.0019s) ========================================
+
+By default this changes are applied to the development environment.
+
+rake db:migrate RAILS_ENV=production # will apply changes to the production environment
+
+## 5.6 Saving data in the controller
+
+At this point we can make use of the Article (Article's model) object inside our controller
+
+Security 'gotchas' will kick in as, the rails requires explicit references
+to the parameters we wish to store in the database.
+
+`` ruby
+  private
+  def article_params
+    params.require(:article).permit(:title, :text)
+  end
+``
+require and permit will allow both :title and :text in this action
 
