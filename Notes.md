@@ -182,6 +182,7 @@ notes on about descriptions.
   Searched in: *          # Where has rails looked for the missing template
   "/path/to/blog/app/views"
 
+<<<<<<< HEAD
 This simple template will satisfy rails:
 
   echo "<h1>New Article</h1>" > blog/app/views/articles/new.html.erb
@@ -293,5 +294,13 @@ back when we added the article resource
     @article = Article.find(params[:id])
   end
 ``
+=======
+Rails will expect the template to be stored on:
+app/views/articles/new.html.erb
+
+On the erb template, form_for :controller helps us to hone down the form for our said
+controller.
+>>>>>>> 0aa922b25052c31a6b173cae5dfe4363fc10a5b5
 
 
+## 5.3 Creating articles
