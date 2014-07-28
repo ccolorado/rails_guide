@@ -282,3 +282,16 @@ to the parameters we wish to store in the database.
 ``
 require and permit will allow both :title and :text in this action
 
+## 5.7 Showing Articles
+
+After implementing the require/permit options, the application will still complain about
+not having the 'show' action which the spec can be found on the rake routes output from
+back when we added the article resource
+
+`` ruby
+  def show
+    @article = Article.find(params[:id])
+  end
+``
+
+
