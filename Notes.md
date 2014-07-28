@@ -236,3 +236,30 @@ the render method.
 *render*'s plain: option was introduced on rails 4.1, currently using 4.0.1, text is the
 corresponding option.
 
+## 5.4 Creating the Article model
+
+Models are referred in singular mode
+
+Creating the model
+$ bin/rails generate model Article title:string text:text
+$ ./bin/rails generate model Article title:string text:text
+      invoke  active_record
+      create    db/migrate/20140727235520_create_articles.rb
+      create    app/models/article.rb
+      invoke    test_unit
+      create      test/models/article_test.rb
+      create      test/fixtures/articles.yml
+
+## 5.5 Running a Migration
+
+A migration is a class that is intended to represent, create and modify a table.
+This class includes a time stamp, in order to keep track of changes to the table. 
+this actions are reversible trough rake.
+
+$ bin/rake db:migrate
+
+==  CreateArticles: migrating =================================================
+-- create_table(:articles)
+   -> 0.0018s
+==  CreateArticles: migrated (0.0019s) ========================================
+
