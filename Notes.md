@@ -293,5 +293,3 @@ back when we added the article resource
     @article = Article.find(params[:id])
   end
 ``
-
-## 5.3 Creating articles
