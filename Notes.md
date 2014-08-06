@@ -293,3 +293,35 @@ back when we added the article resource
     @article = Article.find(params[:id])
   end
 ``
+The instance variable can be consulted on the corresponding template:
+`` erb
+  <%= @article.title %>
+``
+
+## 5.8 List all articles
+
+The route for listing all the articles is http://0.0.0.0:3000/articles/ which will
+require the index method on the controller
+
+``ruby
+  def index
+    @articles = Article.all
+  end
+``
+Naturally the view app/views/articles/index.html.erb must be crated
+Link examples
+``erb
+    <%= link_to 'My Blog', controller: 'articles' %> # Go to articles index page
+    <%= link_to 'New article', new_article_path %> # Go to the new article form
+    <%= link_to 'Back', articles_path %> # Go to the articles index page
+``
+
+If you want to link to an action in the same controller, you don't need to specify the
+:controller option, as Rails will use the current controller by default.
+
+*On the development environment rails reload the application with each request, so there is
+no need to restart the server with every change*
+
+## 5.10 Adding Some Validation
+
+
