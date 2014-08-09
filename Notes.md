@@ -195,19 +195,19 @@ html will allow us to link a form to the ORM driver ( or activerecord ?).
 
 The *form_for* method can link a form to a specific object/resource
 
-`` form_builder
+```form_builder
   <%= form_for :article do |f| %>
     <p>
         <%= f.label :title %><br>         #Field title label
         <%= f.text_field :title %><br>    #field title input field
         ...
-``
+```
 
 However this form has no action and will be redirected to itself.
 
-`` form_builder
+```erb
   <%= form_for :article, url: articles_path  do |f| %>
-``
+```
 Usually a value for *url:* would be _{action: "create"}_, Instead in this case the
 *helper* 'articles_path' is used, ( God knows why we are learning shortcuts this early but
 the again generators are shortcuts )
@@ -221,11 +221,11 @@ the articles prefix"
 To create the required action simply add the create method definition on
 app/controllers/articles_controller.rb
 
-`` ruby
+```ruby
   def create
     render plain: params[:article].instepct
   end
-``
+```
 
 NOTE: this action is only using the render command, so not storing it anywhere.
 
@@ -274,12 +274,12 @@ At this point we can make use of the Article (Article's model) object inside our
 Security 'gotchas' will kick in as, the rails requires explicit references
 to the parameters we wish to store in the database.
 
-`` ruby
-  private
-  def article_params
-    params.require(:article).permit(:title, :text)
-  end
-``
+```ruby
+    private
+    def article_params
+      params.require(:article).permit(:title, :text)
+    end
+```
 require and permit will allow both :title and :text in this action
 
 ## 5.7 Showing Articles
@@ -288,33 +288,33 @@ After implementing the require/permit options, the application will still compla
 not having the 'show' action which the spec can be found on the rake routes output from
 back when we added the article resource
 
-`` ruby
+```ruby
   def show
     @article = Article.find(params[:id])
   end
-``
+```
 The instance variable can be consulted on the corresponding template:
-`` erb
+```erb
   <%= @article.title %>
-``
+```
 
 ## 5.8 List all articles
 
 The route for listing all the articles is http://0.0.0.0:3000/articles/ which will
 require the index method on the controller
 
-``ruby
+```ruby
   def index
     @articles = Article.all
   end
-``
+```
 Naturally the view app/views/articles/index.html.erb must be crated
 Link examples
-``erb
+```erb
     <%= link_to 'My Blog', controller: 'articles' %> # Go to articles index page
     <%= link_to 'New article', new_article_path %> # Go to the new article form
     <%= link_to 'Back', articles_path %> # Go to the articles index page
-``
+```
 
 If you want to link to an action in the same controller, you don't need to specify the
 :controller option, as Rails will use the current controller by default.
