@@ -323,5 +323,59 @@ If you want to link to an action in the same controller, you don't need to speci
 no need to restart the server with every change*
 
 ## 5.10 Adding Some Validation
+The model is where all the business logic is stored,  validations, relationships and much
+more. Rails provides methods to validate your data among other helpers. Note the naming of
+the module file in singular form.
 
+  app/modules/article/rb
 
+```ruby
+class Article < ActiveRecord::Base
+  validates :title, presence: true,
+    length: { minimum: 5 }
+end
+```
+
+Validates in rails can account for presence, uniqueness of columns, format and existence
+of associated methods.
+
+Success or failure of validations determinate the boolean return value of <model>.save
+
+  app/controller/articles_controller.rb
+
+```ruby
+def create
+    @article= Article.new(article_params)
+    if @article.save
+      redirect_to @article
+    else
+      render 'new'
+    end
+end
+```
+In this case the use of render instead of redirect, the difference being that redirect_to
+will generate a separate request whereas the render will stay on the same request, request
+where our @article instance still exists and will populate the existing form.
+
+While this is very useful for the developer it is not for the user, Rails must tell the
+user what happened and why.
+
+We proceed to add error messages on our view
+
+```rb
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved: </h2>
+      <ul>
+      <% @article.errors.full_messages.each do | msg |  %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+```
+
+*Rails automatically wraps fields that contain an error with a div with class
+**field_with_errors**. You can define a css rule to make them standout.*
+
+## 5.11 Updating Articles
