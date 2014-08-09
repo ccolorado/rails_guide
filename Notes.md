@@ -362,7 +362,7 @@ user what happened and why.
 
 We proceed to add error messages on our view
 
-```rb
+```erb
   <% if @article.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved: </h2>
@@ -379,3 +379,42 @@ We proceed to add error messages on our view
 **field_with_errors**. You can define a css rule to make them standout.*
 
 ## 5.11 Updating Articles
+
+To update an element we start creating a view very similar to the article's new.html.erb
+  app/views/articles/edit.html.erb
+The main differnece being the *url:* and the *method:* on the form_for call
+on on the new.html.erb we used:
+```erb
+  <%= form_for :article, url: articles_path do |f| %>
+```
+and in the edit.html.erb:
+```erb
+  <%= form_for :article, url: article_path(@article), method: :patch do | f | %>
+```
+
+This time we point the form to the update action, which is not defined yet but will be
+very soon.
+
+The method: :patch specifies the submission via the PATCH HTTP method ( which is the
+restful correct method )
+
+The first argument can be the object used to preemptively fill the form. Passing a symbol
+that matches the name of an instance variable
+
+Next the update action must be created on the controller
+
+The update method is almost identical to the create article execept for the instance
+variable being created from *@article.update(article_params)* instead of *@article.save*
+
+After the view with the form for the edit/update action, there needs to be a way to
+navigate to this form. Adding a link on the index template  will allow the user to specify
+the article to be updated as well as to access the new behaviour.
+
+```erb
+      <td><%= link_to 'Show', article_path(article) %></td>
+      <td><%= link_to 'Edit', edit_article_path(article) %> </td>
+```
+  * TODO: Investigate list of seemingly arbitrary method names e.g. articles_path,
+    edit_article_path, etc.
+
+## 5.12 Using partials to clean up duplication in views
