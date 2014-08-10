@@ -418,3 +418,38 @@ the article to be updated as well as to access the new behaviour.
     edit_article_path, etc.
 
 ## 5.12 Using partials to clean up duplication in views
+
+Partials are used to avoid duplication on tables [citation needed] so common elements can
+be written only once.
+
+Partial filenames are prefixed by an underscore. We create a partial with the code of the
+form used on new.html.erb and edit.html.erb with the only difference of the form_for line
+
+  app/views/articles/\_form.html.erb
+
+  * Notice the path file path is not inside views, Confirm the path is correct and it's
+    reasoning
+
+```erb
+<%= form_for @article do |f| %>
+```
+
+*We can use this shorter, simpler form_for declaration to stand in for either of the other
+forms is that @article is a resource corresponding to a full set of RESTful routes, and
+Rails is able to infer which URI and method to use. For more information about this use of
+form_for, see Resource-oriented style.*
+
+
+With the partial in place, new and edit can be much more succinct.
+
+  app/views/articles/new.html.erb
+```erb
+<h1>New article</h1>
+
+<%= render 'form' %>  <%# The '_' prefix is not used to reference the partial.%>
+
+<%= link_to 'Back', articles_path %>
+```
+
+Repeat for app/views/articles/edit.html.erb
+
